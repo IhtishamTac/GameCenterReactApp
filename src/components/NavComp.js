@@ -15,14 +15,14 @@ const NavComp = () => {
 
                     {localStorage.getItem('username').includes('admin') ?
                         <>
-                            <li><Link to={'/'} className="nav-link px-2 text-white">List Admin</Link></li>
-                            <li><Link to={'/'} className="nav-link px-2 text-white">List User</Link></li>
+                            <li><Link to={'/list-admin'} className="nav-link px-2 text-white">List Admin</Link></li>
+                            <li><Link to={'/list-user'} className="nav-link px-2 text-white">List User</Link></li>
                         </>
                         :
                         <>
                             <li><Link to={'/discover-games'} className="nav-link px-2 text-white">Discover Games</Link></li>
                             <li><Link to={'/'} className="nav-link px-2 text-white">Manage Games</Link></li>
-                            <li><Link to={'/'} className="nav-link px-2 text-white">User Profile</Link></li>
+                            <li><Link to={'/profile/' + localStorage.getItem('username')} className="nav-link px-2 text-white">User Profile</Link></li>
                         </>
                     }
 

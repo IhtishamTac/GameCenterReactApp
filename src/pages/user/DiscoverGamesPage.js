@@ -8,6 +8,7 @@ const DiscoverGamesPage = () => {
     const token = localStorage.getItem('token');
     const [games, setGames] = useState([]);
     const [totalElement, setElement] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(10);
@@ -22,7 +23,26 @@ const DiscoverGamesPage = () => {
         }
 
         getGames();
-    }, [page, size, sortBy, sortDir]);
+
+        const handleScroll = () => {
+            const { scrollTop, clientHeight, scrollHeight } = document.documentElement || document.body;
+            if (scrollTop + clientHeight >= scrollHeight - 10 && !loading) {
+                setLoading(true);
+                setSize(prevSize => prevSize + 10);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 500);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+
+    }, [page, size, sortBy, sortDir, loading]);
+    if (!games) return (<h1>Loading...</h1>);   
     return (
         <main>
             <NavComp />
@@ -41,21 +61,21 @@ const DiscoverGamesPage = () => {
 
                         <div className="col-lg-8" style={{ textAlign: 'right' }}>
                             <div className="mb-3">
-                                <div className="btn-group" role="group">
-                                    <button 
-                                    type="button" 
-                                    onClick={() => setSortBy('popular')} 
-                                    className={sortBy === 'popular' ? 'btn btn-secondary' : 'btn btn-outline-primary'}
+                                <div className="btn-group" role="group" style={{ marginRight: '10px' }}>
+                                    <button
+                                        type="button"
+                                        onClick={() => setSortBy('popular')}
+                                        className={sortBy === 'popular' ? 'btn btn-secondary' : 'btn btn-outline-primary'}
                                     >Popularity</button>
-                                    <button 
-                                    type="button" 
-                                    onClick={() => setSortBy('uploaddate')} 
-                                    className={sortBy === 'uploaddate' ? 'btn btn-secondary' : 'btn btn-outline-primary'}
+                                    <button
+                                        type="button"
+                                        onClick={() => setSortBy('uploaddate')}
+                                        className={sortBy === 'uploaddate' ? 'btn btn-secondary' : 'btn btn-outline-primary'}
                                     >Recently Updated</button>
-                                    <button 
-                                    type="button" 
-                                    onClick={() => setSortBy('title')} 
-                                    className={sortBy === 'title' ? 'btn btn-secondary' : 'btn btn-outline-primary'}
+                                    <button
+                                        type="button"
+                                        onClick={() => setSortBy('title')}
+                                        className={sortBy === 'title' ? 'btn btn-secondary' : 'btn btn-outline-primary'}
                                     >Alphabetically</button>
                                 </div>
 
@@ -70,7 +90,7 @@ const DiscoverGamesPage = () => {
                     <div className="row">
                         {games.map((game, index) => ((
                             <div className="col-md-6" key={index}>
-                                <Link to={'/detail-game'} className="card card-default mb-3">
+                                <Link to={'/detail-game/' + game.slug} className="card card-default mb-3">
                                     <div className="card-body">
                                         <div className="row">
                                             <div className="col-4">
