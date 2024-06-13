@@ -60,8 +60,8 @@ const DiscoverGamesPage = () => {
                                 </div>
 
                                 <div className="btn-group" role="group">
-                                    <button type="button" onClick={() => setSortDir('asc')} className="btn btn-secondary">ASC</button>
-                                    <button type="button" onClick={() => setSortDir('desc')} className="btn btn-outline-primary">DESC</button>
+                                    <button type="button" onClick={() => setSortDir('asc')} className={sortDir === 'asc' ? 'btn btn-secondary' : 'btn btn-outline-primary'}>ASC</button>
+                                    <button type="button" onClick={() => setSortDir('desc')} className={sortDir === 'desc' ? 'btn btn-secondary' : 'btn btn-outline-primary'}>DESC</button>
                                 </div>
                             </div>
                         </div>
