@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import './assets/css/bootstrap.css';
 import './assets/css/style.css';
-import 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
+// import 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
 import './assets/js/popper';
 import { BrowserRouter } from 'react-router-dom';
 

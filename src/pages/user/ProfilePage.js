@@ -24,7 +24,7 @@ const ProfilePage = () => {
                     }
                 }
             } catch (err) {
-
+                return;
             }
         }
         getProfile();
