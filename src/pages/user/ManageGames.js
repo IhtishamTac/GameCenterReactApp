@@ -1,6 +1,28 @@
+import { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
+
+import defaultImg from "../../assets/example_game/v1/thumbnail.png";
+import NavComp from "../../components/NavComp";
+import UserApi from '../../api/userapi';
+
 const ManageGames = () => {
+    const token = localStorage.getItem('token');
+    const [games, setGames] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const getCreatedGames = async () => {
+            const res = await UserApi.getCreatedGames(token);
+            setGames(res.games);
+        }
+        getCreatedGames();
+    }, [token]);
+
+    if (!games) return (<h1>Loading...</h1>);
+
     return (
         <main>
+            <NavComp />
 
             <div className="hero py-5 bg-light">
                 <div className="container">
@@ -24,16 +46,18 @@ const ManageGames = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><img src="../example_game/v1/thumbnail.png" alt="Demo Game 1 Logo" style={{width:'100%'}} /></td>
-                                <td>Demo Game 1</td>
-                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque, numquam repellendus perspiciatis cupiditate veritatis porro quod eveniet animi perferendis molestias debitis temporibus, asperiores iusto.                    </td>
-                                <td>
-                                    <a href="detail-games.html" className="btn btn-sm btn-primary">Detail</a>
-                                    <a href="manage-games-form-update.html" className="btn btn-sm btn-secondary">Update</a>
-                                    <button className="btn btn-sm btn-danger">Delete</button>
-                                </td>
-                            </tr>
+                            {games.map((games, index) => ((
+                                <tr key={index}>
+                                    <td><img src={games.thumbnail ?? defaultImg} alt="Demo Game 1 Logo" style={{ width: '100%' }} /></td>
+                                    <td>{games.title}</td>
+                                    <td>{games.description}</td>
+                                    <td>
+                                        <Link to={'/detail-game/' + games.slug} className="btn btn-sm btn-primary">Detail</Link>
+                                        <a href="manage-games-form-update.html" className="btn btn-sm btn-secondary">Update</a>
+                                        <button className="btn btn-sm btn-danger">Delete</button>
+                                    </td>
+                                </tr>
+                            )))}
                         </tbody>
                     </table>
 

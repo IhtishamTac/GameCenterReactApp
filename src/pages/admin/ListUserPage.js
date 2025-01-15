@@ -31,6 +31,8 @@ const ListUserPage = () => {
     useEffect(() => {
         getUsers();
     }, [token]);
+    console.log(users);
+    
     if (!users) return (<h1>Loading...</h1>);
     return (
         <main>
@@ -63,13 +65,13 @@ const ListUserPage = () => {
                                     <td><a href="../Gaming Portal/profile.html" target="_blank">{user.username}</a></td>
                                     <td>{user.created_at}</td>
                                     <td>{user.last_login_at || "Haven't Login"}</td>
-                                    {user.delete_reason === null ? (
+                                    {user.delete_reason == null  ? (
                                         <td><span className="bg-success text-white p-1 d-inline-block">Active</span></td>
                                     ) : (
                                         <td><span className="bg-danger text-white p-1 d-inline-block">Blocked</span></td>
                                     )}
                                     <td>
-                                        {user.delete_reason === null ? (
+                                        {user.delete_reason == null ? (
                                             <div className="btn-group" role="group">
                                                 <button type="button" className="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Lock

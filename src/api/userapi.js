@@ -25,6 +25,7 @@ const getGames = async (token, size, page, sortBy, sortDir) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
@@ -40,6 +41,7 @@ const detailGame = async (token, slug) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
@@ -55,6 +57,7 @@ const getScores = async (token, slug) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
@@ -70,12 +73,13 @@ const getProfile = async (token, username) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
 const getCreatedGames = async (token) => {
     try {
-        const res = await ax.get('users', {
+        const res = await ax.get('createdGames', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -85,6 +89,7 @@ const getCreatedGames = async (token) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 

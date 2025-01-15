@@ -18,6 +18,7 @@ const signin = async (username, password, navigate) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown Error');
+        return;
     }
 }
 
@@ -35,6 +36,7 @@ const signout = async (token, navigate) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown Error');
+        return;
     }
 }
 

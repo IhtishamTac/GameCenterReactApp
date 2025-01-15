@@ -18,8 +18,8 @@ const DiscoverGamesPage = () => {
     useEffect(() => {
         const getGames = async () => {
             const res = await UserApi.getGames(token, size, page, sortBy, sortDir);
-            setGames(res.content);
-            setElement(res.totalElements);
+            setGames(res?.content);
+            setElement(res?.totalElements);
         }
 
         getGames();

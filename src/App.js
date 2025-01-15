@@ -6,6 +6,7 @@ const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 
 const DiscoverGamesPage = lazy(() => import('./pages/user/DiscoverGamesPage'));
 const DetailGamePage = lazy(() => import('./pages/user/DetailGamePage'));
+const ManageGamesPage = lazy(() => import('./pages/user/ManageGames'));
 const ProfilePage = lazy(() => import('./pages/user/ProfilePage'));
 
 const ListAdminPage = lazy(() => import('./pages/admin/ListAdminPage'));
@@ -21,6 +22,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
 
         <Route path="/discover-games" element={<DiscoverGamesPage />} />
+        <Route path="/manage-games" element={<ManageGamesPage />} />
         <Route path="/detail-game/:slug" element={<DetailGamePage />} />
         <Route path="/profile/:username" element={<ProfilePage />} />
 

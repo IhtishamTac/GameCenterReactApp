@@ -21,7 +21,7 @@ const NavComp = () => {
                         :
                         <>
                             <li><Link to={'/discover-games'} className="nav-link px-2 text-white">Discover Games</Link></li>
-                            <li><Link to={'/'} className="nav-link px-2 text-white">Manage Games</Link></li>
+                            <li><Link to={'/manage-games'} className="nav-link px-2 text-white">Manage Games</Link></li>
                             <li><Link to={'/profile/' + localStorage.getItem('username')} className="nav-link px-2 text-white">User Profile</Link></li>
                         </>
                     }

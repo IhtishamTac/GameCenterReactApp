@@ -19,6 +19,7 @@ const getAdmins = async (token) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
@@ -34,6 +35,7 @@ const getUsers = async (token) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
@@ -44,9 +46,9 @@ const blockUser = async (token, id, delete_reason) => {
                 'Authorization': `Bearer ${token}`
             }
         });
-
     } catch (err) {
-        alert(err.response.data.message || 'Unknown error');
+        alert(err?.response?.data?.message || 'Unknown error');
+        return;
     }
 }
 
@@ -60,6 +62,7 @@ const unblockUser = async (token, id) => {
 
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
@@ -76,6 +79,7 @@ const adduser = async (token, username, password, navigate) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
@@ -92,6 +96,7 @@ const updateuser = async (token, id, username, password, navigate) => {
         }
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
@@ -104,6 +109,7 @@ const deleteUser = async (token, id) => {
         });
     } catch (err) {
         alert(err.response.data.message || 'Unknown error');
+        return;
     }
 }
 
